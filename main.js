@@ -9,16 +9,17 @@ async function fnConsultarPoke() {
     if (pokemon.status == 200) {
         const nome = await pokemon.json()
         const tipos = await nome.types.map(a => a.type.name)
+        const habili = await nome.abilities.map(a => a.ability.name)
+        const game = await nome.game_indices.map(a => a.version.name)
         console.log(`id: ${nome.id}`)
         console.log(`Nome: ${nome.name}`)
         console.log(`Tipo: ${tipos}`)
-        const evo = id+1
-
-        console.log(evo)
+        const evo = id + 1
         const evolucao = await fetch(`https://pokeapi.co/api/v2/pokemon/${evo}/`)
         const data = await evolucao.json()
-        console.log(`Evolução: ${data.name}`)
-
+        console.log(`Evolução: ${data.name}[soquenão]`)
+        console.log(`Habilidades: ${habili}`)
+        console.log(`GAme: ${game}`)
 
     }
 
